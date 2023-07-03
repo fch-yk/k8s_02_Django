@@ -13,8 +13,7 @@ spec:
         spec:
           containers:
           - name: clearsessions
-            image: web:latest
-            imagePullPolicy: Never
+            image: fchyk/k8s_django:latest
             envFrom:
             - configMapRef:
                 name: django-config

@@ -8,8 +8,7 @@ spec:
     spec:
       containers:
       - name: migrate
-        image: web:latest
-        imagePullPolicy: Never
+        image: fchyk/k8s_django:latest
         envFrom:
         - configMapRef:
             name: django-config

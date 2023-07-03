@@ -26,32 +26,6 @@ Verify that the cluster is running:
 kubectl cluster-info
 ```
 
-### Image building
-
-Go to the backend_main_django folder:
-
-```bash
-cd backend_main_django
-```
-
-Run:
-
-```bash
-minikube image build -t web -f Dockerfile .
-```
-
-Verify that the `web:latest` image is built:
-
-```bash
-minikube image ls
-```
-
-Return to the root project folder:
-
-```bash
-cd ..
-```
-
 ### Adding a PostgreSQL  database
 
 _Note_: For production installation, remember to replace the formal values (like `replace_me`) with real values of your choice.

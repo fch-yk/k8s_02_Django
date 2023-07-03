@@ -16,8 +16,7 @@ spec:
     spec:
       containers:
       - name: django-web
-        image: web:latest
-        imagePullPolicy: Never
+        image: fchyk/k8s_django:latest
         ports:
         - containerPort: 80
           protocol: TCP
