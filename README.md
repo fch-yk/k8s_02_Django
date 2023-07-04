@@ -10,7 +10,7 @@ The website is started with [Nginx Unit](https://unit.nginx.org/).
 - [Minikube](https://minikube.sigs.k8s.io/docs/start/);
 - [Helm](https://helm.sh/docs/intro/install/);
 
-## Installation
+## Development Installation (Minikube)
 
 ### Cluster start
 
@@ -286,7 +286,7 @@ kubectl apply -f configmap.yaml
 kubectl rollout restart deployment django-deployment
 ```
 
-## How to stop the cluster
+## How to stop the minikube cluster
 
 Run:
 
@@ -294,7 +294,7 @@ Run:
 minikube stop
 ```
 
-## How to delete the cluster
+## How to delete the minikube cluster
 
 Run:
 

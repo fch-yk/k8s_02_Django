@@ -8,7 +8,7 @@ spec:
     spec:
       containers:
       - name: migrate
-        image: fchyk/k8s_django:latest
+        image: fchef/k8s_django:latest
         envFrom:
         - configMapRef:
             name: django-config
