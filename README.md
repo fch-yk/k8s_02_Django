@@ -10,7 +10,27 @@ The website is started with [Nginx Unit](https://unit.nginx.org/).
 - [Minikube](https://minikube.sigs.k8s.io/docs/start/);
 - [Helm](https://helm.sh/docs/intro/install/);
 
-## Development Installation (Minikube)
+## Installation using Docker Compose
+
+- Build images and start the application set:
+
+```bash
+docker compose up -d --build
+```
+
+- Run migrations:
+
+```bash
+docker exec -it django_site python manage.py migrate
+```
+
+- Createa a superuser:
+
+```bash
+docker exec -it django_site python manage.py createsuperuser
+```
+
+## Installation using Minikube
 
 ### Cluster start
 
@@ -310,13 +330,19 @@ docker image ls
 docker push --all-tags fchef/k8s_django
 ```
 
+- [Execute migrations](#migrations-execution);
+
 - Restart the deployment:
 
 ```bash
 kubectl rollout restart deployment django-deployment
 ```
 
-- [Execute migrations](#migrations-execution);
+- Verify that all `django-deployment` pods are running and ready:
+
+```bash
+kubectl get pods
+```
 
 ## How to deploy a certain version
 
