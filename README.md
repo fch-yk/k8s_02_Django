@@ -38,7 +38,7 @@ helm install django-db --set auth.postgresPassword=replace_me oci://registry-1.d
 
 where `django-db` is a release name;
 
-- Verify that the `django-db-postgresql-0` pod is running:
+- Verify that the `django-db-postgresql-0` pod is running and ready:
 
 ```bash
 kubectl get pods
@@ -207,7 +207,7 @@ exit
 minikube addons enable ingress
 ```
 
-- Verify that the NGINX Ingress controller is running:
+- Verify that the NGINX Ingress controller is running and ready:
 
 ```bash
 kubectl get pods -n ingress-nginx

@@ -10,6 +10,11 @@ class Event(models.Model):
     starts_at = models.DateTimeField(
         verbose_name='начинается в '
     )
+    ends_at = models.DateTimeField(
+        verbose_name='завершается в ',
+        blank=True,
+        null=True,
+    )
 
     class Meta():
         verbose_name = 'событие'

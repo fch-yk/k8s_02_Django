@@ -11,6 +11,7 @@ class EventAdmin(admin.ModelAdmin):
     list_display = [
         'title',
         'starts_at',
+        'ends_at',
         'id',
     ]
 
