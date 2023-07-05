@@ -326,7 +326,7 @@ kubectl set image deployment/{deployment_name} {container_name}={image_name}:{im
 
 - Example:
 
-kubectl set image deployment/django-deployment django-web=fchef/k8s_django:e5dd415
+kubectl set image deployment/django-deployment django-web=fchef/k8s_django:81d48a3
 
 ## How to stop the minikube cluster
 
