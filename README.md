@@ -286,6 +286,48 @@ kubectl apply -f configmap.yaml
 kubectl rollout restart deployment django-deployment
 ```
 
+## How to deploy the latest version
+
+_Note_: remember to replace `fchef` with your login at [Docker Hub](https://hub.docker.com/) in the commands below and in the following files: `deploy.yaml`, `clearsessions.yaml`, `migrate.yaml`.
+
+- Make changes;
+- Commit;
+- Build images:
+
+```bash
+docker build . -t fchef/k8s_django:latest -t fchef/k8s_django:$(git log -1 --pretty=%h)
+```
+
+- Verify that images are built. You should see two `fchef/k8s_django` images in the list: the first - with a tag `latest`, the second - with the commit hash as a tag. Both of these images will have the same `IMAGE ID`.
+
+```bash
+docker image ls
+```
+
+- Pull the images to [Docker Hub](https://hub.docker.com/):
+
+```bash
+docker push --all-tags fchef/k8s_django
+```
+
+- Restart the deployment:
+
+```bash
+kubectl rollout restart deployment django-deployment
+```
+
+- [Execute migrations](#migrations-execution);
+
+## How to deploy a certain version
+
+- Syntax:
+
+kubectl set image deployment/{deployment_name} {container_name}={image_name}:{image_tag}
+
+- Example:
+
+kubectl set image deployment/django-deployment django-web=fchef/k8s_django:e5dd415
+
 ## How to stop the minikube cluster
 
 Run:
