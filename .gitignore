@@ -168,3 +168,4 @@ cython_debug/
 
 .parcel-cache/
 kubernetes/configmap.yaml
+kubernetes/yc_configmap.yaml

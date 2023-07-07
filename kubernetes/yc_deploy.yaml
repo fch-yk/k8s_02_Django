@@ -1,0 +1,44 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: django-deployment
+  labels:
+    app: django-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      project: django-app
+  template:
+    metadata:
+      labels:
+        project: django-app # the service looks for pods with this label
+    spec:
+      containers:
+      - name: django-web
+        image: fchef/k8s_django:latest
+        ports:
+        - containerPort: 80
+          protocol: TCP
+        envFrom:
+        - configMapRef:
+            name: django-config
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: django-service
+  labels:
+    env: prod
+    owner: fch
+spec:
+  selector:
+    project: django-app # select pods with this label
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+    nodePort: 30251
+  type: NodePort
+
