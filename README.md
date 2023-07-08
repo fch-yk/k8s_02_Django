@@ -312,6 +312,12 @@ _Note_: remember to replace `fchef` with your login at [Docker Hub](https://hub.
 
 - Make changes;
 - Commit;
+- Go to the `backend_main_django` folder:
+
+```bash
+cd backend_main_django
+```
+
 - Build images:
 
 ```bash

@@ -1,5 +1,9 @@
-from django.http import HttpResponse
+from django.shortcuts import render
 
 
 def index(request):
-    return HttpResponse('Test k8s website, version 05.07.2023 10:38')
+    context = {
+        'title': 'Experimental k8s website',
+        'version': 'version 07.07.2023 22:41',
+    }
+    return render(request, 'index.html', context=context)
