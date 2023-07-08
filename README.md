@@ -191,6 +191,8 @@ where `django-migrate-jlj8p` is the pod's name
 
 _Note_: The job and the pod will be deleted in 120 seconds according to the `spec.ttlSecondsAfterFinished` parameter in the `migrate.yaml` manifest file.
 
+See also: [How to deploy the latest version](#how-to-deploy-the-latest-version).
+
 ### Superuser creation
 
 - Find out which `django-deployment` pods are running:
@@ -324,6 +326,12 @@ cd backend_main_django
 docker build . -t fchef/k8s_django:latest -t fchef/k8s_django:$(git log -1 --pretty=%h)
 ```
 
+- Return to the root project folder
+
+```bash
+cd ..
+```
+
 - Verify that images are built. You should see two `fchef/k8s_django` images in the list: the first - with a tag `latest`, the second - with the commit hash as a tag. Both of these images will have the same `IMAGE ID`.
 
 ```bash
@@ -334,6 +342,12 @@ docker image ls
 
 ```bash
 docker push --all-tags fchef/k8s_django
+```
+
+- Go to the `kubernetes` folder:
+
+```bash
+cd kubernetes
 ```
 
 - [Execute migrations](#migrations-execution);

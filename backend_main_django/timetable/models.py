@@ -15,6 +15,12 @@ class Event(models.Model):
         blank=True,
         null=True,
     )
+    image = models.ImageField(
+        verbose_name='Картинка',
+        upload_to='images',
+        blank=True,
+        null=True,
+    )
 
     class Meta():
         verbose_name = 'событие'
