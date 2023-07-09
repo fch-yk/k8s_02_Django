@@ -23,7 +23,14 @@ spec:
         envFrom:
         - configMapRef:
             name: django-config
-
+        volumeMounts:
+          - mountPath: /media
+            name: edu-focused-keller-bucket
+      volumes:
+        - name: edu-focused-keller-bucket
+          persistentVolumeClaim:
+            claimName: bucket
+            readOnly: false
 ---
 apiVersion: v1
 kind: Service
