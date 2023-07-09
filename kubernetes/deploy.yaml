@@ -20,6 +20,17 @@ spec:
         ports:
         - containerPort: 80
           protocol: TCP
+        env:
+        - name: SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: django-secret
+              key: secret_key
+        - name: DATABASE_URL
+          valueFrom:
+            secretKeyRef:
+              name: django-secret
+              key: database_url
         envFrom:
         - configMapRef:
             name: django-config

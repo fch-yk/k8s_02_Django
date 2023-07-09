@@ -116,33 +116,58 @@ exit
 
 ### Set the environmental variables
 
+#### Configmap environmental variables
+
+Use ConfigMaps for not-secret configuration data.
+
 - Go to the `kubernetes` folder:
 
 ```bash
 cd kubernetes
 ```
 
-- Create the `configmap.yaml` file and fill it up like this:
-
-```yaml
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: django-config
-  namespace: default
-data:
-  SECRET_KEY: replace_me
-  DEBUG: "False"
-  DATABASE_URL: postgres://k8s_user:replace_me@django-db-postgresql:5432/k8s_db
-  ALLOWED_HOSTS: star-burger.test
-```
-
-_Note_: for production installation, remember to replace the formal values (like `replace_me`) with real values of your choice.
-
-- Create the ConfigMap:
+- Create the `django-config` configmap:
 
 ```bash
 kubectl create -f configmap.yaml
+```
+
+#### Secret environmental variables
+
+Use Secrets for things which are actually secret like API keys, credentials.
+
+_Note_: for production installation, remember to replace the formal values (like `replace_me`) with real values of your choice.
+
+- Encode the secret key:
+
+```bash
+echo -n 'replace_me' | base64
+```
+
+- The output will be like this:
+
+```bash
+cmVwbGFjZV9tZQ==
+```
+
+- Create the `secret.yaml` file and fill it up like this:
+
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: django-secret
+type: Opaque
+data:
+  secret_key: cmVwbGFjZV9tZQ==
+stringData:
+  database_url: postgres://k8s_user:replace_me@django-db-postgresql:5432/k8s_db
+```
+
+- Apply the secret:
+
+```bash
+kubectl apply -f secret.yaml
 ```
 
 ### Deployment and service configuration
