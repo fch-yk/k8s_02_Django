@@ -8,6 +8,5 @@ def index(request):
         'title': 'Experimental k8s website',
         'version': 'version 08.07.2023 17:01',
         'events': Event.objects.all().order_by('starts_at'),
-        'test_secret': settings.TEST_SECRET,
     }
     return render(request, 'index.html', context=context)
