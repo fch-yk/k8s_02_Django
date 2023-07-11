@@ -5,7 +5,7 @@ metadata:
   labels:
     app: django-deployment
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
       project: django-app
@@ -25,12 +25,11 @@ spec:
             name: django-config
         volumeMounts:
           - mountPath: /media
-            name: edu-focused-keller-bucket
+            name: persistent-storage
       volumes:
-        - name: edu-focused-keller-bucket
+        - name: persistent-storage
           persistentVolumeClaim:
-            claimName: bucket
-            readOnly: false
+            claimName: pvc-django
 ---
 apiVersion: v1
 kind: Service
