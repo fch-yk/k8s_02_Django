@@ -1,0 +1,23 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: chown-unit-media
+spec:
+  ttlSecondsAfterFinished: 120
+  template:
+    spec:
+      containers:
+      - name: migrate
+        image: fchef/k8s_django:latest
+        envFrom:
+        - configMapRef:
+            name: django-config
+        volumeMounts:
+          - mountPath: /media
+            name: persistent-storage
+        command: ["chown",  "unit", "/media"]
+      volumes:
+        - name: persistent-storage
+          persistentVolumeClaim:
+            claimName: pvc-django
+      restartPolicy: Never

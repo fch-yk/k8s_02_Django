@@ -5,7 +5,7 @@ metadata:
   labels:
     app: django-deployment
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
       project: django-app
@@ -23,7 +23,13 @@ spec:
         envFrom:
         - configMapRef:
             name: django-config
-
+        volumeMounts:
+          - mountPath: /media
+            name: persistent-storage
+      volumes:
+        - name: persistent-storage
+          persistentVolumeClaim:
+            claimName: pvc-django
 ---
 apiVersion: v1
 kind: Service

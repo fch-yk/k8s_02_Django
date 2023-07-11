@@ -318,13 +318,28 @@ where `clear-job` is a job name;
 
 Open the [website](http://star-burger.test/).
 
-## How to change the environmental variables
+## How to change the environmental variables in the `minikube` cluster
 
 - Edit the `configmap.yaml` file;
 - Apply the `configmap.yaml` file changes:
 
 ```bash
 kubectl apply -f configmap.yaml
+```
+
+- Restart the deployment:
+
+```bash
+kubectl rollout restart deployment django-deployment
+```
+
+## How to change the environmental variables in the cloud cluster
+
+- Edit the `yc_configmap.yaml` file;
+- Apply the `yc_configmap.yaml` file changes:
+
+```bash
+kubectl apply -f yc_configmap.yaml
 ```
 
 - Restart the deployment:
@@ -363,7 +378,7 @@ cd ..
 docker image ls
 ```
 
-- Pull the images to [Docker Hub](https://hub.docker.com/):
+- Push the images to [Docker Hub](https://hub.docker.com/):
 
 ```bash
 docker push --all-tags fchef/k8s_django
