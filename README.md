@@ -3,6 +3,10 @@
 This project was created for experiments with a Django-based website, [Minikube](https://minikube.sigs.k8s.io/docs/start/), and [Kubernetes](https://kubernetes.io/).
 The website is started with [Nginx Unit](https://unit.nginx.org/).
 
+## Installations
+
+- [Cloud installation](cloud_installation.md)
+
 ## Prerequisites
 
 - [kubectl](https://kubernetes.io/docs/tasks/tools/);
@@ -325,21 +329,6 @@ Open the [website](http://star-burger.test/).
 
 ```bash
 kubectl apply -f configmap.yaml
-```
-
-- Restart the deployment:
-
-```bash
-kubectl rollout restart deployment django-deployment
-```
-
-## How to change the environmental variables in the cloud cluster
-
-- Edit the `yc_configmap.yaml` file;
-- Apply the `yc_configmap.yaml` file changes:
-
-```bash
-kubectl apply -f yc_configmap.yaml
 ```
 
 - Restart the deployment:
