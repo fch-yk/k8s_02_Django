@@ -167,5 +167,5 @@ dmypy.json
 cython_debug/
 
 .parcel-cache/
-kubernetes/yc_configmap.yaml
-kubernetes/secret.yaml
+k8s_cloud/yc_secret.yaml
+k8s_minikube/secret.yaml
