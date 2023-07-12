@@ -17,6 +17,7 @@ class EventAdmin(admin.ModelAdmin):
         'starts_at',
         'ends_at',
         'get_image_list_preview',
+        'rating',
         'id',
     ]
 
