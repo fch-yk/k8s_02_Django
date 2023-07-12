@@ -22,6 +22,12 @@ class Event(models.Model):
         null=True,
     )
 
+    rating = models.IntegerField(
+        verbose_name='рейтинг',
+        blank=True,
+        null=True,
+    )
+
     class Meta():
         verbose_name = 'событие'
         verbose_name_plural = 'события'

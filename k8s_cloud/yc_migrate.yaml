@@ -1,0 +1,27 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: django-migrate
+spec:
+  ttlSecondsAfterFinished: 120
+  template:
+    spec:
+      containers:
+      - name: migrate
+        image: fchef/k8s_django:latest
+        env:
+        - name: SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: django-secret
+              key: secret_key
+        - name: DATABASE_URL
+          valueFrom:
+            secretKeyRef:
+              name: django-secret
+              key: database_url
+        envFrom:
+        - configMapRef:
+            name: django-config
+        command: ["python",  "manage.py", "migrate", "--noinput"]
+      restartPolicy: Never
