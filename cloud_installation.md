@@ -242,3 +242,25 @@ kubectl set image deployment/{deployment_name} {container_name}={image_name}:{im
 - Example:
 
 kubectl set image deployment/django-deployment django-web=fchef/k8s_django:81d48a3
+
+## How to clear the session store
+
+Create the `django-clearsessions` cronjob, which will run monthly:
+
+```bash
+kubectl create -f yc_clearsessions.yaml
+```
+
+- Verify that the `django-clearsessions` cronjob is created:
+
+```bash
+kubectl get cronjob
+```
+
+- You can trigger the `django-clearsessions` cronjob manually:
+
+```bash
+kubectl create job --from=cronjob/django-clearsessions clear-job
+```
+
+where `clear-job` is a job name;
