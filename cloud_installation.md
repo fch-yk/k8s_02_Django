@@ -132,7 +132,7 @@ kubectl apply -f yc_deploy.yaml
 
 ## Migrations execution
 
-- Go to the `k8s_cloud` folder:
+- If the `k8s_cloud` folder is not the current folder, go to it:
 
 ```bash
 cd k8s_cloud
@@ -206,10 +206,10 @@ docker image ls
 docker push --all-tags fchef/k8s_django
 ```
 
-- Go to the `kubernetes` folder:
+- If the `k8s_cloud` folder is not the current folder, go to it:
 
 ```bash
-cd kubernetes
+cd k8s_cloud
 ```
 
 - [Execute migrations](#migrations-execution);
@@ -220,7 +220,7 @@ cd kubernetes
 kubectl rollout restart deployment django-deployment
 ```
 
-- _Note_: You can also delete the deployment and start it again (instead of restarting):
+- _Note_: You can also delete the deployment and apply it again (instead of restarting):
 
 ```bash
 kubectl delete -f yc_deploy.yaml
