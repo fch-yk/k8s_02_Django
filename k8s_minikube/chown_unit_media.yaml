@@ -1,25 +1,14 @@
-apiVersion : apps/v1
-kind: Deployment
+apiVersion: batch/v1
+kind: Job
 metadata:
-  name: django-deployment
-  labels:
-    app: django-deployment
+  name: chown-unit-media
 spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      project: django-app
+  ttlSecondsAfterFinished: 120
   template:
-    metadata:
-      labels:
-        project: django-app # the service looks for pods with this label
     spec:
       containers:
-      - name: django-web
+      - name: migrate
         image: fchef/k8s_django:latest
-        ports:
-        - containerPort: 80
-          protocol: TCP
         env:
         - name: SECRET_KEY
           valueFrom:
@@ -37,23 +26,9 @@ spec:
         volumeMounts:
           - mountPath: /media
             name: persistent-storage
+        command: ["chown",  "unit", "/media"]
       volumes:
         - name: persistent-storage
           persistentVolumeClaim:
             claimName: pvc-django
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: django-service
-  labels:
-    env: prod
-    owner: fch
-spec:
-  selector:
-    project: django-app # select pods with this label
-  ports:
-  - port: 80
-    protocol: TCP
-    targetPort: 80
-
+      restartPolicy: Never

@@ -1,4 +1,4 @@
-# Cloud installation
+# Cloud deploy
 
 The project was deployed in the [Yandex Cloud](https://cloud.yandex.com/en/) cluster.
 
@@ -90,7 +90,7 @@ Create the `pvc-django` Persistent Volume Claim:
 kubectl create -f yc_pvc.yaml
 ```
 
-Crete the `chown-unit-media` job to change the `/media` folder owner to `unit`:
+Create the `chown-unit-media` job to change the `/media` folder owner to `unit`:
 
 ```bash
 kubectl create -f yc_chown_unit_media.yaml
@@ -264,3 +264,5 @@ kubectl create job --from=cronjob/django-clearsessions clear-job
 ```
 
 where `clear-job` is a job name;
+
+[Back to README](../README.md)

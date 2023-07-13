@@ -1,0 +1,27 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: vol-django
+  labels:
+    type: local
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/data/django-vol"
+
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: pvc-django
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: ""
+  volumeName: vol-django
+  resources:
+    requests:
+      storage: 1Gi
