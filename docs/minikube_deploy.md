@@ -95,10 +95,10 @@ exit
 
 Use ConfigMaps for not-secret configuration data.
 
-- Go to the `kubernetes` folder:
+- Go to the `k8s_minikube` folder:
 
 ```bash
-cd kubernetes
+cd k8s_minikube
 ```
 
 - Create the `django-config` configmap:
@@ -109,7 +109,7 @@ kubectl create -f configmap.yaml
 
 ### Secret environmental variables
 
-Use Secrets for things which are actually secret like API keys, credentials.
+Use Secrets for things that are actually secret, like API keys and credentials.
 
 _Note_: for production installation, remember to replace the formal values (like `replace_me`) with real values of your choice.
 
@@ -324,7 +324,7 @@ kubectl rollout restart deployment django-deployment
 
 ## How to deploy the latest version
 
-_Note_: remember to replace `fchef` with your login at [Docker Hub](https://hub.docker.com/) in the commands below and in the following files: `deploy.yaml`, `clearsessions.yaml`, `migrate.yaml`.
+_Note_: remember to replace `fchef` with your login at [Docker Hub](https://hub.docker.com/) in the commands below and in the following files: `deploy.yaml`, `clearsessions.yaml`, `migrate.yaml`, `chown_unit_media.yaml`.
 
 - Make changes;
 - Commit;
@@ -346,7 +346,7 @@ docker build . -t fchef/k8s_django:latest -t fchef/k8s_django:$(git log -1 --pre
 cd ..
 ```
 
-- Verify that images are built. You should see two `fchef/k8s_django` images in the list: the first - with a tag `latest`, the second - with the commit hash as a tag. Both of these images will have the same `IMAGE ID`.
+- Verify that images have been built. You should see two `fchef/k8s_django` images in the list: the first image will be with a tag `latest`, and the second image will be with the commit hash as a tag. Both of these images will have the same `IMAGE ID`.
 
 ```bash
 docker image ls
@@ -358,10 +358,10 @@ docker image ls
 docker push --all-tags fchef/k8s_django
 ```
 
-- Go to the `kubernetes` folder:
+- Go to the `k8s_minikube` folder:
 
 ```bash
-cd kubernetes
+cd k8s_minikube
 ```
 
 - [Execute migrations](#migrations-execution);

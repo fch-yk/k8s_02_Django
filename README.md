@@ -1,6 +1,6 @@
 # Django site for k8s experiments
 
-This project was created for experiments with a Django-based website, [Minikube](https://minikube.sigs.k8s.io/docs/start/), and [Kubernetes](https://kubernetes.io/).
+This project was created for experiments with a Django-based website and [Kubernetes](https://kubernetes.io/).
 The website is started with [Nginx Unit](https://unit.nginx.org/).
 
 ## Deploys
