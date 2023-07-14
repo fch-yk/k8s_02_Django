@@ -12,7 +12,7 @@ docker compose up -d --build
 docker exec -it django_site python manage.py migrate
 ```
 
-- Createa a superuser:
+- Create a superuser:
 
 ```bash
 docker exec -it django_site python manage.py createsuperuser

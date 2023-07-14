@@ -34,7 +34,7 @@ kubectl apply -f yc_configmap.yaml
 
 ### How to set secret environmental variables
 
-Use Secrets for things which are actually secret like API keys, credentials.
+Use Secrets for things that are actually secret, like API keys and credentials.
 
 _Note_: for production installation, remember to replace the formal values (like `replace_me`) with real values of your choice.
 
@@ -172,7 +172,7 @@ See also: [How to deploy the latest version](#how-to-deploy-the-latest-version).
 
 ## How to deploy the latest version
 
-_Note_: remember to replace `fchef` with your login at [Docker Hub](https://hub.docker.com/) in the commands below and in the following files: `yc_deploy.yaml`, `yc_clearsessions.yaml`, `yc_migrate.yaml`.
+_Note_: remember to replace `fchef` with your login at [Docker Hub](https://hub.docker.com/) in the commands below and in the following files: `yc_deploy.yaml`, `yc_clearsessions.yaml`, `yc_migrate.yaml`, `yc_chown_unit_media.yaml`.
 
 - Make changes;
 - Commit;
@@ -194,7 +194,7 @@ docker build . -t fchef/k8s_django:latest -t fchef/k8s_django:$(git log -1 --pre
 cd ..
 ```
 
-- Verify that images are built. You should see two `fchef/k8s_django` images in the list: the first - with a tag `latest`, the second - with the commit hash as a tag. Both of these images will have the same `IMAGE ID`.
+- Verify that images have been built. You should see two `fchef/k8s_django` images in the list: the first image will be with a tag `latest`, and the second image will be with the commit hash as a tag. Both of these images will have the same `IMAGE ID`.
 
 ```bash
 docker image ls
