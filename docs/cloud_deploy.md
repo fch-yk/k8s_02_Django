@@ -12,7 +12,7 @@ It is assumed that the cloud cluster already exists. The project deployment in t
 - The project uses a database from the [Managed Service for PostgreSQL](https://cloud.yandex.ru/docs/managed-postgresql/quickstart?from=int-console-help-center-or-nav);
 - The [Yandex Application Load Balancer](https://cloud.yandex.ru/docs/application-load-balancer/concepts/?from=int-console-help-center-or-nav) directs traffic to the service;
 - The project uses [PVC](https://cloud.yandex.com/en/docs/managed-kubernetes/operations/volumes/dynamic-create-pv#create-pvc) to store media;
-- The website is run under the `unit` user, that is why it is necessary to change the owner of the `/media` folder, which is linked to the Persistent Volume; see [How to organize the `media` storage](#how-to-organize-the-media-storage)
+- The website is run under the `unit` user, that is why it is necessary to set the `spec.template.spec.securityContext.fsGroup` parameter in the [deploy manifest file](../k8s_cloud/yc_deploy.yaml); to find out more, visit [Configure volume permission and ownership change policy for Pods](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#configure-volume-permission-and-ownership-change-policy-for-pods).
 
 ## How to set the environmental variables
 
@@ -88,12 +88,6 @@ Create the `pvc-django` Persistent Volume Claim:
 
 ```bash
 kubectl create -f yc_pvc.yaml
-```
-
-Create the `chown-unit-media` job to change the `/media` folder owner to `unit`:
-
-```bash
-kubectl create -f yc_chown_unit_media.yaml
 ```
 
 If the `django-deployment` deployment was not applied yet, apply it:
@@ -172,7 +166,7 @@ See also: [How to deploy the latest version](#how-to-deploy-the-latest-version).
 
 ## How to deploy the latest version
 
-_Note_: remember to replace `fchef` with your login at [Docker Hub](https://hub.docker.com/) in the commands below and in the following files: `yc_deploy.yaml`, `yc_clearsessions.yaml`, `yc_migrate.yaml`, `yc_chown_unit_media.yaml`.
+_Note_: remember to replace `fchef` with your login at [Docker Hub](https://hub.docker.com/) in the commands below and in the following files: `yc_deploy.yaml`, `yc_clearsessions.yaml`, `yc_migrate.yaml`.
 
 - Make changes;
 - Commit;

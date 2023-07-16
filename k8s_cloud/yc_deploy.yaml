@@ -37,6 +37,9 @@ spec:
         volumeMounts:
           - mountPath: /media
             name: persistent-storage
+      securityContext:
+        fsGroup: 102
+        fsGroupChangePolicy: "OnRootMismatch"
       volumes:
         - name: persistent-storage
           persistentVolumeClaim:
